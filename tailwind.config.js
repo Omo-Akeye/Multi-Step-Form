@@ -10,7 +10,13 @@ export default {
         custom:['Ubuntu','sans']
       },
       backgroundColor :{
-        'custom-bg': 'hsl(206, 94%, 87%)'
+        'custom-bg': 'hsl(217, 100%, 97%)'
+      },
+      colors:{
+        'light-gray':' hsl(229, 24%, 87%)',
+        'cool-gray':'hsl(231, 11%, 63%)',
+        'marine-blue': 'hsl(213, 96%, 18%)',
+        'purple-blue': 'hsl(243, 100%, 62%)',
       }
     },
   },
