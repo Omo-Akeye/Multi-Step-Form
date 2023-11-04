@@ -1,10 +1,10 @@
+
 import Header from "./Header"
 import LogIn from "./LogIn"
 
 
 function App() {
-  
-  
+ 
 
   return (
     <div className="font-custom  ">
