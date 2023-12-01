@@ -5,6 +5,8 @@ import LogIn from "./LogIn";
 import Header from "./Header"
 import AddsOn from "./AddsOn";
 
+
+
 const initialState = {
   username: '',
   phone:'',
@@ -13,7 +15,8 @@ const initialState = {
   errors :{
     username :'',
     email : '',
-    phone : ''
+    phone : '',
+    selectPlan : 'arcade',
   },
   step:1
 }
@@ -39,6 +42,10 @@ function reducer(state,action) {
       },
         step: isValid ? state.step + 1 : state.step
       }  
+      case 'SELECT_PLAN': 
+      return {
+        ...state, selectPlan:action.payload
+      }
     default:
       return state;
   }
@@ -58,11 +65,13 @@ function App() {
     handleNextStep();
   }
   function handleNextStep() {
-    console.log('Handling next step...');
     dispatch({ type: 'NEXT_STEP' });
   }
+  function handleSelect (plan){
+    dispatch({type:'SELECT_PLAN', payload: plan})
+  }
   const [state,dispatch] = useReducer(reducer,initialState)
-  const {username,email,phone,isValid,errors,step} = state
+  const {username,email,phone,isValid,errors,step,selectPlan} = state
   
   return (
     <div className="font-custom  ">
@@ -74,7 +83,7 @@ function App() {
    ( <LogIn username={username} email={email} phone={phone} errors={errors} handleChange={handleChange} handleSubmit={handleSubmit}/>)}
 
     {state.step === 2 && (
-     <MonthlyPlan/>
+     <MonthlyPlan handleSelect = {handleSelect} selectPlan={selectPlan}/>
 )}
     {state.step === 3 && (
      <AddsOn/>
