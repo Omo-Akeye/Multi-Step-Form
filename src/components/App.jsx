@@ -16,8 +16,10 @@ const initialState = {
     username :'',
     email : '',
     phone : '',
-    selectPlan : 'arcade',
+    selectPlan : null,
+    // isSelected: false
   },
+  // selected: true,
   step:1
 }
 function reducer(state,action) {
@@ -42,6 +44,10 @@ function reducer(state,action) {
       },
         step: isValid ? state.step + 1 : state.step
       }  
+      case 'GO_BACK' :
+        return {
+          ...state, step : state.step - 1
+        }
       case 'SELECT_PLAN': 
       return {
         ...state, selectPlan:action.payload
@@ -67,6 +73,9 @@ function App() {
   function handleNextStep() {
     dispatch({ type: 'NEXT_STEP' });
   }
+  function handlePrev() {
+    dispatch({type:'GO_BACK'})
+  }
   function handleSelect (plan){
     dispatch({type:'SELECT_PLAN', payload: plan})
   }
@@ -90,9 +99,10 @@ function App() {
 )}
       </div>
    </div>
-
-   
+   <div className="flex justify-between px-5 py-3" >
+   { state.step > 1 && <button className="text-xl text-cool-gray font-bold" onClick={()=> handlePrev()}>Go Back</button>}
     <Button step={step} handleNextStep={handleNextStep} isValid={isValid}/>
+   </div>
     </div>
   )
 }
