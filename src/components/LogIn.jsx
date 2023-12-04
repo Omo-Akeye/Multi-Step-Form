@@ -5,7 +5,7 @@ export default function LogIn ({username,email, phone,errors,handleChange,handle
        <section>
        <div>
           <h1 className="text-4xl text-marine-blue font-bold">Personal info</h1>
-          <p className="text-[18px] text-cool-gray py-4">Please provide name,email,address, and phone number</p>
+          <p className="text-lg text-cool-gray py-4">Please provide name,email,address, and phone number</p>
           </div>
           <form onSubmit={handleSubmit}>
          <div className="relative">

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-export default function MonthlyPlan({selectPlan,handleSelect}) {
-  const [isSelected,setIsSelected] = useState(false)
-  function handleChange() {
-    setIsSelected(!isSelected)
-  }
+export default function MonthlyPlan({selectPlan,handleSelect,handleSwitch,isSelected}) {
+  // const [isSelected,setIsSelected] = useState(false)
+  // function handleChange() {
+  //   setIsSelected(!isSelected)
+  // }
   return (
       <div>
         <h1 className='text-4xl text-marine-blue font-bold'>Select your plan</h1>
@@ -39,7 +39,7 @@ export default function MonthlyPlan({selectPlan,handleSelect}) {
 
         <footer className='flex justify-center text-center mt-7 bg-custom-bg p-5 rounded-md'>
           <h2  className='font-bold text-marine-blue text-[18px]'>Monthly</h2>
-          <div  onClick={()=> handleChange()}  
+          <div  onClick={()=> handleSwitch()}  
           className={`flex w-14 h-7 bg-marine-blue mx-6 rounded-full transition-all duration-500 cursor-pointer 
           ${isSelected ? 'bg-marine-blue' : ''}`}   >
             <span className={`mt-[3px] ml-1 h-5 w-5 bg-white rounded-full ${isSelected ? 'ml-8' : ''}`} ></span>

@@ -16,11 +16,11 @@ const initialState = {
     username :'',
     email : '',
     phone : '',
-    selectPlan : null,
-    // isSelected: false
   },
-  // selected: true,
-  step:1
+  selectPlan : 'arcade',
+  isSelected: false,
+  step:1,
+  selectedAddOns: []
 }
 function reducer(state,action) {
   switch (action.type) {
@@ -50,8 +50,18 @@ function reducer(state,action) {
         }
       case 'SELECT_PLAN': 
       return {
-        ...state, selectPlan:action.payload
+        ...state, selectPlan :action.payload
       }
+      case 'SWITCH_PLAN' : 
+      return {
+        ...state, isSelected: !state.isSelected
+      }
+      case 'TOGGLE_ADDON':
+        return {
+          ...state,selectedAddOns: state.selectedAddOns.includes(action.payload)
+            ? state.selectedAddOns.filter((id) => id !== action.payload)
+            : [...state.selectedAddOns, action.payload],
+        };
     default:
       return state;
   }
@@ -60,7 +70,9 @@ function isFormValid ({username,email,phone}) {
   return username.trim() !== '' && email.trim() !== '' && phone.trim() !== '';
 };
 
+
 function App() {
+  
   
   function handleChange(e) {
     const {name,value} = e.target;
@@ -79,8 +91,15 @@ function App() {
   function handleSelect (plan){
     dispatch({type:'SELECT_PLAN', payload: plan})
   }
+  function handleSwitch (){
+    dispatch({type:'SWITCH_PLAN'})
+  }
+  function handleAddOnClick (addOnId) {
+    dispatch({ type: 'TOGGLE_ADDON', payload: addOnId });
+  };
+  
   const [state,dispatch] = useReducer(reducer,initialState)
-  const {username,email,phone,isValid,errors,step,selectPlan} = state
+  const {username,email,phone,isValid,errors,step,selectPlan,isSelected,selectedAddOns} = state
   
   return (
     <div className="font-custom  ">
@@ -92,10 +111,10 @@ function App() {
    ( <LogIn username={username} email={email} phone={phone} errors={errors} handleChange={handleChange} handleSubmit={handleSubmit}/>)}
 
     {state.step === 2 && (
-     <MonthlyPlan handleSelect = {handleSelect} selectPlan={selectPlan}/>
+     <MonthlyPlan handleSelect = {handleSelect} handleSwitch={handleSwitch} isSelected={isSelected} selectPlan={selectPlan}/>
 )}
     {state.step === 3 && (
-     <AddsOn/>
+     <AddsOn selectedAddOns={selectedAddOns} handleAddOnClick={handleAddOnClick} isSelected={isSelected}/>
 )}
       </div>
    </div>

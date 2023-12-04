@@ -1,47 +1,63 @@
 
-export default function AddsOn() {
+import React from 'react';
+
+export default function AddsOn({ selectedAddOns,handleAddOnClick,isSelected}) {
+ 
+  const addOns = [
+    {
+      id: 1,
+      name: 'Online service',
+      description: 'Access to multiplayer games',
+      price: isSelected ? '$10/yr' : '$1/mo',
+    },
+    {
+      id: 2,
+      name: 'Larger storage',
+      description: 'Extra 1TB of cloud save',
+      price: isSelected ? '$20/yr' : '$2/mo',
+    },
+    {
+      id: 3,
+      name: 'Customizable profile',
+      description: 'Custom theme on your profile',
+      price: isSelected ? '$20/yr' : '$2/mo',
+    },
+  ];
+
+
+ 
   return (
     <>
-   <div>
-    <h1 className="text-4xl font-bold text-marine-blue mb-3">Pick add-ons</h1>
-    <h3 className="text-cool-gray text-[18px]">Add-ons help enhance your gaming experience</h3>
-     
-     <span className="flex justify-between items-center p-3 border-[2px] border-purple-600 rounded-md mt-5 cursor-pointer">
-     <div className="flex">
-     <input type="checkbox" name="" id="" className="w-6 cursor-pointer"/>
-      <div className="pl-8">
-        <h2 className="text-marine-blue font-bold text-xl">Online service</h2>
-        <p className="text-cool-gray font-bold">Access to multiplier games</p>
-      </div>
-     </div>
-      <h4 className="text-purple-600 font-semibold">+$1/mo</h4>
-     </span>
+      <div>
+        <h1 className="text-4xl font-bold text-marine-blue mb-3">Pick add-ons</h1>
+        <h3 className="text-cool-gray text-lg">Add-ons help enhance your gaming experience</h3>
 
-     <span className="flex justify-between items-center p-3 border-[2px] rounded-md mt-5 cursor-pointer">
-      
-      <div className="flex">
-      <input type="checkbox" name="" id="" className="w-6 cursor-pointer" />
-       <div className="pl-8">
-       <h2 className="text-marine-blue font-bold text-xl">Larger storage</h2>
-        <p className="text-cool-gray font-bold">Extra 1TB of cloud save</p>
-       </div>
+        {addOns.map((addOn) => (
+          <span
+            key={addOn.id}
+            className={`flex justify-between items-center p-3 border-[2px] rounded-md mt-5 cursor-pointer ${
+              selectedAddOns.includes(addOn.id) ? 'bg-blue-200 border-blue-500' : ''
+            }`}
+            onClick={() => handleAddOnClick(addOn.id)}
+            
+          >
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id={`addon-${addOn.id}`}
+                className="w-6 cursor-pointer"
+                checked={selectedAddOns.includes(addOn.id)}
+                onChange={() => handleAddOnClick(addOn.id)} 
+              />
+              <div className="pl-3">
+                <h2 className="text-marine-blue font-bold text-xl">{addOn.name}</h2>
+                <p className="text-cool-gray font-bold text-sm">{addOn.description}</p>
+              </div>
+            </div>
+            <h4 className="text-purple-600 font-semibold">{addOn.price}</h4>
+          </span>
+        ))}
       </div>
-      <h4 className="text-purple-600 font-semibold">+$2/mo</h4>
-     </span>
-
-     <span className="flex justify-between items-center p-3 border-[2px] rounded-md mt-5 cursor-pointer">
-     
-      <div className="flex">
-      <input type="checkbox" name="" id=""  className="w-6 cursor-pointer"/>
-        <div className="pl-8">
-        <h2 className="text-marine-blue font-bold text-xl">Customizable profile</h2>
-        <p className="text-cool-gray font-bold">Custom theme on your profile</p>
-        </div>
-      </div>
-      <h4 className="text-purple-600 font-semibold">+$2/mo</h4>
-     </span>
-   </div>
-
     </>
-  )
+  );
 }
