@@ -4,6 +4,7 @@ import Button from "./Button";
 import LogIn from "./LogIn";
 import Header from "./Header"
 import AddsOn from "./AddsOn";
+import FinishUp from "./FinishUp";
 
 
 
@@ -56,6 +57,10 @@ function reducer(state,action) {
       return {
         ...state, isSelected: !state.isSelected
       }
+      case 'CHANGE' :
+        return {
+          ...state, step : state.step - 2
+        }
       case 'TOGGLE_ADDON':
         return {
           ...state,selectedAddOns: state.selectedAddOns.includes(action.payload)
@@ -69,9 +74,67 @@ function reducer(state,action) {
 function isFormValid ({username,email,phone}) {
   return username.trim() !== '' && email.trim() !== '' && phone.trim() !== '';
 };
+const addOns = [
+  {
+    id: 1,
+    name: 'Online service',
+    description: 'Access to multiplayer games',
+    MonthlyPrice: '$1/mo',
+    YearlyPrice : '$10/yr'
+  },
+  {
+    id: 2,
+    name: 'Larger storage',
+    description: 'Extra 1TB of cloud save',
+    MonthlyPrice: '$2/mo',
+    YearlyPrice : '$20/yr'
+  },
+  {
+    id: 3,
+    name: 'Customizable profile',
+    description: 'Custom theme on your profile',
+    MonthlyPrice: '$2/mo',
+    YearlyPrice : '$20/yr'
+  },
+];
+
+
+const plans = [
+  {
+    id: 'arcade',
+    name: 'Arcade',
+    image: '/assets/icon-arcade.svg',
+    price: {
+      monthly: '$9/mo',
+      yearly: '$90/yr',
+    },
+    freeMonths: 2,
+  },
+  {
+    id: 'advance',
+    name: 'Advanced',
+    image: '/assets/icon-advanced.svg',
+    price: {
+      monthly: '$12/mo',
+      yearly: '$120/yr',
+    },
+    freeMonths: 2,
+  },
+  {
+    id: 'pro',
+    name: 'Pro',
+    image: '/assets/icon-pro.svg',
+    price: {
+      monthly: '$15/mo',
+      yearly: '$150/yr',
+    },
+    freeMonths: 2,
+  },
+];
 
 
 function App() {
+  
   
   
   function handleChange(e) {
@@ -97,9 +160,14 @@ function App() {
   function handleAddOnClick (addOnId) {
     dispatch({ type: 'TOGGLE_ADDON', payload: addOnId });
   };
-  
+  function handleChangeUp (){
+    dispatch({type: 'CHANGE'})
+  }
   const [state,dispatch] = useReducer(reducer,initialState)
-  const {username,email,phone,isValid,errors,step,selectPlan,isSelected,selectedAddOns} = state
+  const {username,email,phone,isValid,errors,step,selectPlan,isSelected,selectedAddOns} = state;
+
+  const selectedPlan = plans.find((plan) => plan.id === selectPlan);
+
   
   return (
     <div className="font-custom  ">
@@ -111,16 +179,16 @@ function App() {
    ( <LogIn username={username} email={email} phone={phone} errors={errors} handleChange={handleChange} handleSubmit={handleSubmit}/>)}
 
     {state.step === 2 && (
-     <MonthlyPlan handleSelect = {handleSelect} handleSwitch={handleSwitch} isSelected={isSelected} selectPlan={selectPlan}/>
+     <MonthlyPlan handleSelect = {handleSelect} handleSwitch={handleSwitch} isSelected={isSelected} selectPlan={selectPlan} plans={plans}/>
 )}
     {state.step === 3 && (
-     <AddsOn selectedAddOns={selectedAddOns} handleAddOnClick={handleAddOnClick} isSelected={isSelected}/>
-)}
+     <AddsOn selectedAddOns={selectedAddOns} handleAddOnClick={handleAddOnClick} isSelected={isSelected} addOns={addOns}/>
+)}  {state.step === 4 && (<FinishUp selectedAddOns={selectedAddOns} addOns={addOns} isSelected={isSelected} selectedPlan={selectedPlan} handleChangeUp={handleChangeUp}/>)}
       </div>
    </div>
    <div className="flex justify-between px-5 py-3" >
    { state.step > 1 && <button className="text-xl text-cool-gray font-bold" onClick={()=> handlePrev()}>Go Back</button>}
-    <Button step={step} handleNextStep={handleNextStep} isValid={isValid}/>
+    <Button step={step} handleNextStep={handleNextStep} />
    </div>
     </div>
   )

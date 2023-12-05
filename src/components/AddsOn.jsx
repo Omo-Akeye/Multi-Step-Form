@@ -1,30 +1,7 @@
 
 import React from 'react';
 
-export default function AddsOn({ selectedAddOns,handleAddOnClick,isSelected}) {
- 
-  const addOns = [
-    {
-      id: 1,
-      name: 'Online service',
-      description: 'Access to multiplayer games',
-      price: isSelected ? '$10/yr' : '$1/mo',
-    },
-    {
-      id: 2,
-      name: 'Larger storage',
-      description: 'Extra 1TB of cloud save',
-      price: isSelected ? '$20/yr' : '$2/mo',
-    },
-    {
-      id: 3,
-      name: 'Customizable profile',
-      description: 'Custom theme on your profile',
-      price: isSelected ? '$20/yr' : '$2/mo',
-    },
-  ];
-
-
+export default function AddsOn({ selectedAddOns,handleAddOnClick,isSelected,addOns}) {
  
   return (
     <>
@@ -54,7 +31,7 @@ export default function AddsOn({ selectedAddOns,handleAddOnClick,isSelected}) {
                 <p className="text-cool-gray font-bold text-sm">{addOn.description}</p>
               </div>
             </div>
-            <h4 className="text-purple-600 font-semibold">{addOn.price}</h4>
+            <h4 className="text-purple-600 font-semibold">{isSelected ? addOn.YearlyPrice : addOn.MonthlyPrice}</h4>
           </span>
         ))}
       </div>
