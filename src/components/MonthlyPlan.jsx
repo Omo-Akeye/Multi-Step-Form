@@ -1,7 +1,13 @@
 import React from 'react';
 
 
-export default function MonthlyPlan({ selectPlan, handleSelect, handleSwitch, isSelected ,plans}) {
+export default function MonthlyPlan({ selectPlan, dispatch, isSelected ,plans}) {
+  function handleSelect (plan){
+    dispatch({type:'SELECT_PLAN', payload: plan})
+  }
+  function handleSwitch (){
+    dispatch({type:'SWITCH_PLAN'})
+  }
   return (
     <div>
       <h1 className="text-4xl text-marine-blue font-bold">Select your plan</h1>

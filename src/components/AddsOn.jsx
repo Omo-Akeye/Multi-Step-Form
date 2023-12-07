@@ -1,8 +1,10 @@
 
 import React from 'react';
 
-export default function AddsOn({ selectedAddOns,handleAddOnClick,isSelected,addOns}) {
- 
+export default function AddsOn({ selectedAddOns,dispatch,isSelected,addOns}) {
+  function handleAddOnClick (addOnId) {
+    dispatch({ type: 'TOGGLE_ADDON', payload: addOnId });
+  };
   return (
     <>
       <div>

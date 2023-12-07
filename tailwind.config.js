@@ -5,9 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    
     extend: {
       fontFamily:{
         custom:['Ubuntu','sans']
+      },
+        backgroundImage: {
+          'mobile-sidebar': "url('./assets/bg-sidebar-mobile.png')",
       },
       backgroundColor :{
         'custom-bg': 'hsl(217, 100%, 97%)'

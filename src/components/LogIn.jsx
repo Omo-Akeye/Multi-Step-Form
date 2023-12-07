@@ -1,6 +1,9 @@
 
-export default function LogIn ({username,email, phone,errors,handleChange,handleSubmit}) {
-
+export default function LogIn ({username,email, phone,errors,dispatch,handleSubmit}) {
+   function handleChange(e) {
+      const {name,value} = e.target;
+      dispatch({type:'Input_Change', field:name,value})
+    }
     return (
        <section>
        <div>

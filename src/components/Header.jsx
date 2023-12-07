@@ -2,7 +2,7 @@
 
 export default function Header ({currentStep}) {
  return (
-    <div className="bg-[url('assets/bg-sidebar-mobile.svg')] bg-cover bg-center w-[100%] h-40 text-white relative">
+    <div className="bg-mobile-sidebar bg-cover bg-center w-[100%] h-40 text-white relative" >
     <nav className="flex justify-between w-[50%] m-[auto] pt-10">
    
     <div className={`rounded-full p-1 pr-3 pl-3 font-bold border-2 ${currentStep === 1 ? 'bg-light-blue text-marine-blue' : 'border-white'}`}>
@@ -14,7 +14,7 @@ export default function Header ({currentStep}) {
     <div className={`rounded-full p-1 pr-3 pl-3 font-bold border-2 ${currentStep === 3 ? 'bg-light-blue text-marine-blue' : 'border-white'}`}>
           3
         </div>
-    <div className={`rounded-full p-1 pr-3 pl-3 font-bold border-2 ${currentStep === 4 ? 'bg-light-blue text-marine-blue' : 'border-white'}`}>
+    <div className={`rounded-full p-1 pr-3 pl-3 font-bold border-2 ${currentStep === 4 || currentStep === 5  ? 'bg-light-blue text-marine-blue' : 'border-white'}`}>
           4
         </div>
     </nav>

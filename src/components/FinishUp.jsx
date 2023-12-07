@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-function FinishUp({ selectedAddOns, addOns,isSelected,selectedPlan,handleChangeUp }) {
+function FinishUp({ selectedAddOns, addOns,isSelected,selectedPlan,dispatch}) {
   const calculateTotalPrice = () => {
     const addOnsTotal = selectedAddOns.reduce((total, addOnId) => {
       const selectedAddOn = addOns.find((addOn) => addOn.id === addOnId);
@@ -12,7 +12,9 @@ function FinishUp({ selectedAddOns, addOns,isSelected,selectedPlan,handleChangeU
     const total = addOnsTotal + parseFloat(planPrice.replace('$', '').replace('/mo', '').replace('/yr', ''));
     return total;
   };
-  
+  function handleChangeUp (){
+    dispatch({type: 'CHANGE'})
+  }
   return (
     <div>
        <h1 className="text-4xl font-bold text-marine-blue mb-3">Finishing up</h1>
