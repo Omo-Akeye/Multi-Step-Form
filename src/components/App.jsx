@@ -29,11 +29,15 @@ function App() {
   const selectedPlan = plans.find((plan) => plan.id === selectPlan);
   
   return (
-    <div className="font-custom  ">
-    <Header currentStep={state.step}/>
-
-   <div className="bg-custom-bg pb-10">
-        <div className="w-[90%] m-[auto] bg-white py-8 px-5 mt-[-60px] rounded-lg drop-shadow-lg">
+    <>
+    <div className="font-custom bg-white md:grid md:grid-cols-[1fr,3fr] md:w-[80%] md:m-auto md:p-3 md:mt-10 ">
+   <div>
+     <Header currentStep={state.step}/>
+   </div>
+    
+    <section>
+    <div className=" pb-10">
+        <div className="w-[90%] m-[auto] bg-white py-8 px-5 mt-[-60px] rounded-lg drop-shadow-lg md:mt-[auto]">
    {state.step ===1 && 
    ( <LogIn username={username} email={email} phone={phone} errors={errors} dispatch={dispatch} handleSubmit={handleSubmit}/>)}
 
@@ -49,10 +53,14 @@ function App() {
    </div>
 
    {state.step !== 5 && (<div className="flex justify-between px-5 py-3" >
-   { state.step > 1 && <button className="text-xl text-cool-gray font-bold" onClick={()=> handlePrev()}>Go Back</button>}
+   { <button className={`text-xl text-cool-gray font-bold ${state.step === 1 ? 'invisible' : '' }`} onClick={()=> handlePrev()}>Go Back</button>}
     <Button step={step} handleNextStep={handleNextStep} />
    </div>)}
+    </section>
+
     </div>
+
+    </>
   )
 }
 

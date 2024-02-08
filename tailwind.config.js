@@ -5,13 +5,21 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    
+    // screens: {
+    //   'laptop' : '768px'
+    //  ` @media (max-width: 768px): {
+    //     '.header-bg' :{
+    //     backgroundImage: 'url(./assets/bg-sidebar-mobile.png)',
+    //    }
+    //    }`
+    // },
     extend: {
       fontFamily:{
         custom:['Ubuntu','sans']
       },
         backgroundImage: {
-          'mobile-sidebar': "url('./assets/bg-sidebar-mobile.png')",
+          'mobile-sidebar': "url('/assets/bg-sidebar-mobile.png')",
+          'desktop-view' : "url('/assets/bg-sidebar-desktop.svg')"
       },
       backgroundColor :{
         'custom-bg': 'hsl(217, 100%, 97%)'
@@ -26,8 +34,10 @@ export default {
         'strawberry-red' : ' hsl(354, 84%, 57%)',
         'magnolia': 'hsl(217, 100%, 97%)',
         'Alabaster': ' hsl(231, 100%, 99%)'
-      }
+      },
+   
     },
+    
   },
   plugins: [],
 }

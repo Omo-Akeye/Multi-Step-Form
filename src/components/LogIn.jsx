@@ -27,9 +27,8 @@ export default function LogIn ({username,email, phone,errors,dispatch,handleSubm
          <label htmlFor="phone" className="text-2xl text-marine-blue">Phone Number</label>
           <p className="absolute right-[2%] text-red-500">{errors.phone}</p>
          </div>
-          <input type="tel" value={phone} onChange={handleChange} name="phone" id="phone" placeholder="+234 8143353" className="w-[100%] border text-xl p-3 custom-placeholder  "/>
+          <input type="number" value={phone} onChange={handleChange} name="phone" id="phone" placeholder="+234 8143353" className="w-[100%] border text-xl p-3 custom-placeholder  "/>
           </div>
-    
           </form>
        </section>
       
