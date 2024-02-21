@@ -1,5 +1,8 @@
+import { useFormContext } from "./App";
 
-export default function LogIn ({username,email, phone,errors,dispatch,handleSubmit}) {
+export default function LogIn () {
+   const { dispatch,handleSubmit,state } = useFormContext();
+   const { errors, username, email, phone } = state;
    function handleChange(e) {
       const {name,value} = e.target;
       dispatch({type:'Input_Change', field:name,value})

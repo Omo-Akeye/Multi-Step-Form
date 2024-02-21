@@ -1,7 +1,10 @@
 
 import React from 'react';
+import { useFormContext } from './App';
 
-export default function AddsOn({ selectedAddOns,dispatch,isSelected,addOns}) {
+export default function AddsOn() {
+  const { dispatch, state, addOns } = useFormContext();
+  const {isSelected,selectedAddOns} = state
   function handleAddOnClick (addOnId) {
     dispatch({ type: 'TOGGLE_ADDON', payload: addOnId });
   };

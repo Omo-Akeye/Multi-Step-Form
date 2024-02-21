@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import MonthlyPlan from "./MonthlyPlan";
 import Button from "./Button";
 import LogIn from "./LogIn";
@@ -11,6 +11,7 @@ import { initialState } from "./reducer";
 import { plans,addOns } from "./data";
 
 
+const FormContext = createContext()
 function App() {
   
   function handleSubmit(e) {
@@ -30,38 +31,43 @@ function App() {
   
   return (
     <>
+     <FormContext.Provider value={{ state, dispatch, plans, addOns, handleNextStep
+      ,handlePrev,handleSubmit,selectedPlan}}>
+
     <div className="font-custom bg-white md:grid md:grid-cols-[1fr,3fr] md:w-[80%] md:m-auto md:p-3 md:mt-10 ">
    <div>
-     <Header currentStep={state.step}/>
+     <Header />
    </div>
     
     <section>
     <div className=" pb-10">
         <div className="w-[90%] m-[auto] bg-white py-8 px-5 mt-[-60px] rounded-lg drop-shadow-lg md:mt-[auto]">
    {state.step ===1 && 
-   ( <LogIn username={username} email={email} phone={phone} errors={errors} dispatch={dispatch} handleSubmit={handleSubmit}/>)}
+   ( <LogIn  />)}
 
     {state.step === 2 && (
-     <MonthlyPlan dispatch={dispatch}  isSelected={isSelected} selectPlan={selectPlan} plans={plans}/>
+     <MonthlyPlan />
 )}
     {state.step === 3 && (
-     <AddsOn selectedAddOns={selectedAddOns} dispatch={dispatch} isSelected={isSelected} addOns={addOns}/>
-)}  {state.step === 4 && (<FinishUp selectedAddOns={selectedAddOns} dispatch={dispatch}
-           addOns={addOns} isSelected={isSelected} selectedPlan={selectedPlan} />)}
+     <AddsOn />
+)}  {state.step === 4 && (<FinishUp />)}
     {state.step === 5 && (<Thankyou/>)}
       </div>
    </div>
 
-   {state.step !== 5 && (<div className="flex justify-between px-5 py-3" >
+   {step !== 5 &&
+    (<div className="flex justify-between px-5 py-3" >
    { <button className={`text-xl text-cool-gray font-bold ${state.step === 1 ? 'invisible' : '' }`} onClick={()=> handlePrev()}>Go Back</button>}
-    <Button step={step} handleNextStep={handleNextStep} />
+    <Button  handleNextStep={handleNextStep} />
    </div>)}
     </section>
 
     </div>
-
+    </FormContext.Provider>
     </>
   )
 }
-
+export function useFormContext() {
+  return useContext(FormContext);
+}
 export default App

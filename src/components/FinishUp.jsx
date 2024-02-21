@@ -1,7 +1,10 @@
 
 import React from 'react';
+import { useFormContext } from './App';
 
-function FinishUp({ selectedAddOns, addOns,isSelected,selectedPlan,dispatch}) {
+function FinishUp() {
+  const {dispatch,addOns,selectedPlan,state } = useFormContext();
+  const {isSelected,selectedAddOns} = state
   const calculateTotalPrice = () => {
     const addOnsTotal = selectedAddOns.reduce((total, addOnId) => {
       const selectedAddOn = addOns.find((addOn) => addOn.id === addOnId);
@@ -20,16 +23,14 @@ function FinishUp({ selectedAddOns, addOns,isSelected,selectedPlan,dispatch}) {
        <h1 className="text-4xl font-bold text-marine-blue mb-3">Finishing up</h1>
         <h3 className="text-cool-gray text-lg">Double-check everything looks OK before confirming</h3>
      <div className='bg-custom-bg p-5 rounded-md mt-3'>
-     {/* {selectedPlan && ( */}
         <div className='flex justify-between'>
           <span>
           <p className='text-marine-blue font-black text-base'>{selectedPlan.name}  ({isSelected ? 'Yearly' : 'Monthly'})</p>
-          <a href="#" onClick={()=> handleChangeUp()} className='text-cool-gray text-base  decoration-solid'>Change</a>
+          <a href="#" onClick={()=> handleChangeUp()} className='text-cool-gray text-base  decoration-solid '>Change</a>
           </span>
           <p className='text-marine-blue text-base font-black'>{isSelected ? selectedPlan.price.yearly : selectedPlan.price.monthly}</p>
         </div>
         <hr className='mt-3' />
-      {/* // )} */}
       <ul>
         {selectedAddOns.map((addOnId) => {
           const selectedAddOn = addOns.find((addOn) => addOn.id === addOnId);

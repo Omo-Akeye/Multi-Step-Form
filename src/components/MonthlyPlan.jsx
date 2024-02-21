@@ -1,7 +1,10 @@
 import React from 'react';
+import { useFormContext } from './App';
 
 
-export default function MonthlyPlan({ selectPlan, dispatch, isSelected ,plans}) {
+export default function MonthlyPlan() {
+  const { dispatch,state,plans } = useFormContext();
+  const {isSelected,selectPlan} = state
   function handleSelect (plan){
     dispatch({type:'SELECT_PLAN', payload: plan})
   }

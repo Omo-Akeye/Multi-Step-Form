@@ -1,4 +1,8 @@
-export default function Header({ currentStep }) {
+import { useFormContext } from "./App";
+
+export default function Header() {
+  const { state } = useFormContext();
+  const currentStep = state.step
   const steps = [
     { number: 1, title: 'YOUR INFO', description: 'Step 1' },
     { number: 2, title: 'SELECT PLAN', description: 'Step 2' },
