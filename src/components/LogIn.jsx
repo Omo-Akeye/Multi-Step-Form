@@ -1,4 +1,4 @@
-import { useFormContext } from "./App";
+import { useFormContext } from '../App';
 
 export default function LogIn () {
    const { dispatch,handleSubmit,state } = useFormContext();
@@ -30,7 +30,7 @@ export default function LogIn () {
          <label htmlFor="phone" className="text-2xl text-marine-blue">Phone Number</label>
           <p className="absolute right-[2%] text-red-500">{errors.phone}</p>
          </div>
-          <input type="number" value={phone} onChange={handleChange} name="phone" id="phone" placeholder="+234 8143353" className="w-[100%] border text-xl p-3 custom-placeholder  "/>
+          <input type="tel" value={phone} onChange={handleChange} name="phone" id="phone" placeholder="+234 8143353" className="w-[100%] border text-xl p-3 custom-placeholder  "/>
           </div>
           </form>
        </section>

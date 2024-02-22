@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useFormContext } from './App';
+import { useFormContext } from '../App';
 
 export default function AddsOn() {
   const { dispatch, state, addOns } = useFormContext();

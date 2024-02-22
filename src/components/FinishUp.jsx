@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { useFormContext } from './App';
+import { useFormContext } from '../App';
+
 
 function FinishUp() {
   const {dispatch,addOns,selectedPlan,state } = useFormContext();

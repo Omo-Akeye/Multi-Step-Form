@@ -1,14 +1,14 @@
 import { createContext, useContext, useReducer } from "react";
-import MonthlyPlan from "./MonthlyPlan";
-import Button from "./Button";
-import LogIn from "./LogIn";
-import Header from "./Header"
-import AddsOn from "./AddsOn";
-import FinishUp from "./FinishUp";
-import Thankyou from "./Thankyou";
-import reducer from './reducer'
-import { initialState } from "./reducer";
-import { plans,addOns } from "./data";
+import MonthlyPlan from "./components/MonthlyPlan";
+import Button from "./components/Button";
+import LogIn from "./components/LogIn";
+import Header from "./components/Header"
+import AddsOn from "./components/AddsOn";
+import FinishUp from "./components/FinishUp";
+import Thankyou from "./components/Thankyou";
+import reducer from './components/reducer'
+import { initialState } from "./components/reducer";
+import { plans,addOns } from "./components/data";
 
 
 const FormContext = createContext()

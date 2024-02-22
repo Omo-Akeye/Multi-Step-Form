@@ -1,4 +1,13 @@
 
+const validateEmail = (email) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+};
+const validatePhone = (phone) => {
+  const regex = /^\+?[0-9]{1,3}-?[0-9]{3,14}$/;
+  return regex.test(phone);
+};
+
 
  export const initialState = {
   username: '',
@@ -26,15 +35,27 @@ export default function reducer(state,action) {
           },
         }
         case 'NEXT_STEP' :
-          const isValid= isFormValid(state);
+          const isValid = isFormValid(state);
+          let emailError = '';
+          let phoneError = '';
+          if (state.email.trim() === '') {
+            emailError = 'Email is required';
+          } else if (!validateEmail(state.email)) {
+            emailError = 'Invalid email format';
+          }
+          if (state.phone.trim() === '') {
+            phoneError = 'Phone is required';
+          } else if (!validatePhone(state.phone)) {
+            phoneError = 'Invalid phone format';
+          }
         return { 
           ...state,
         isValid,
         errors: {
           ...state.errors,
           username: state.username.trim() === '' ? 'Name is required' : '',
-          email: state.email.trim() === '' ? 'Email is required' : '',
-          phone: state.phone.trim() === '' ? 'Phone is required' : '',
+          email: emailError,
+          phone: phoneError,
         },
           step: isValid ? state.step + 1 : state.step
         }  
@@ -66,5 +87,5 @@ export default function reducer(state,action) {
   }
 
    function isFormValid ({username,email,phone}) {
-    return username.trim() !== '' && email.trim() !== '' && phone.trim() !== '';
+    return username.trim() !== '' && email.trim() !== '' && phone.trim() !== '' && validateEmail(email) && validatePhone(phone);
   };
