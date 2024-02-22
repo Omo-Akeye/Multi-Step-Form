@@ -1,6 +1,7 @@
 import React from 'react'
 import NextButton from './NextButton'
-import { useFormContext } from '../App';
+import { useFormContext } from '../context/useFormContext';
+
 
 export default function Button() {
   const {state,handlePrev } = useFormContext();

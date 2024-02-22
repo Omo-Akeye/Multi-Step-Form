@@ -1,4 +1,5 @@
-import { useFormContext } from '../App';
+import { useFormContext } from "../context/useFormContext";
+
 
 export default function Header() {
   const { state } = useFormContext();
@@ -11,7 +12,7 @@ export default function Header() {
   ];
 
   return (
-    <div className="bg-mobile-sidebar bg-cover bg-center w-full  h-40 text-white relative md:bg-desktop-view md:h-full">
+    <div className="relative w-full h-40 text-white bg-center bg-cover bg-mobile-sidebar md:bg-desktop-view md:h-full">
       <nav className="flex justify-between w-[50%] m-[auto] pt-10 md:block md:w-[80%]">
         {steps.map((step) => (
           <main className="flex" key={step.number}>
@@ -26,7 +27,7 @@ export default function Header() {
             >
               {step.number}
             </div>
-            <span className="pl-5 hidden md:block">
+            <span className="hidden pl-5 md:block">
               <h5 className="text-light-gray">{step.description}</h5>
               <h2 className="font-bold">{step.title}</h2>
             </span>

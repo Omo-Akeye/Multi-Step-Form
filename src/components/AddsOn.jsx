@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { useFormContext } from '../App';
+import { useFormContext } from '../context/useFormContext';
+
 
 export default function AddsOn() {
   const { dispatch, state, addOns } = useFormContext();
@@ -11,8 +12,8 @@ export default function AddsOn() {
   return (
     <>
       <div>
-        <h1 className="text-4xl font-bold text-marine-blue mb-3">Pick add-ons</h1>
-        <h3 className="text-cool-gray text-lg">Add-ons help enhance your gaming experience</h3>
+        <h1 className="mb-3 text-4xl font-bold text-marine-blue">Pick add-ons</h1>
+        <h3 className="text-lg text-cool-gray">Add-ons help enhance your gaming experience</h3>
 
         {addOns.map((addOn) => (
           <span
@@ -32,11 +33,11 @@ export default function AddsOn() {
                 onChange={() => handleAddOnClick(addOn.id)} 
               />
               <div className="pl-3">
-                <h2 className="text-marine-blue font-bold text-xl">{addOn.name}</h2>
-                <p className="text-cool-gray font-bold text-sm">{addOn.description}</p>
+                <h2 className="text-xl font-bold text-marine-blue">{addOn.name}</h2>
+                <p className="text-sm font-bold text-cool-gray">{addOn.description}</p>
               </div>
             </div>
-            <h4 className="text-purple-600 font-semibold">{isSelected ? addOn.YearlyPrice : addOn.MonthlyPrice}</h4>
+            <h4 className="font-semibold text-purple-600">{isSelected ? addOn.YearlyPrice : addOn.MonthlyPrice}</h4>
           </span>
         ))}
       </div>

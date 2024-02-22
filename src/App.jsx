@@ -5,14 +5,13 @@ import Header from "./components/Header"
 import AddsOn from "./components/AddsOn";
 import FinishUp from "./components/FinishUp";
 import Thankyou from "./components/Thankyou";
-import reducer from './components/reducer'
-import { initialState } from "./components/reducer";
-import { plans,addOns } from "./components/data";
-import NextButton from "./components/NextButton";
+import reducer from './reducer/reducer'
+import { initialState } from "./reducer/reducer";
+import { plans,addOns } from "./data/data";
 import Button from "./components/Button";
 
 
-const FormContext = createContext()
+export const FormContext = createContext()
 function App() {
   
   function handleSubmit(e) {
@@ -41,7 +40,7 @@ function App() {
    </div>
     
     <section>
-    <div className=" pb-10">
+    <div className="pb-10 ">
         <div className="w-[90%] m-[auto] bg-white py-8 px-5 mt-[-60px] rounded-lg drop-shadow-lg md:mt-[auto]">
   {state.step ===1 && 
    ( <LogIn  />)}
@@ -66,7 +65,5 @@ function App() {
     </>
   )
 }
-export function useFormContext() {
-  return useContext(FormContext);
-}
+
 export default App

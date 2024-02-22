@@ -1,5 +1,6 @@
 import React from 'react';
-import { useFormContext } from '../App';
+import { useFormContext } from '../context/useFormContext';
+
 
 
 export default function MonthlyPlan() {
@@ -13,7 +14,7 @@ export default function MonthlyPlan() {
   }
   return (
     <div>
-      <h1 className="text-4xl text-marine-blue font-bold">Select your plan</h1>
+      <h1 className="text-4xl font-bold text-marine-blue">Select your plan</h1>
       <p className="text-[18px] text-cool-gray py-4">
         You have the option of choosing monthly or yearly billing.
       </p>
@@ -26,16 +27,16 @@ export default function MonthlyPlan() {
         >
           <img src={plan.image} alt="" className="w-[50px]" />
           <div className="pl-5">
-            <h2 className="text-xl text-marine-blue font-bold">{plan.name}</h2>
+            <h2 className="text-xl font-bold text-marine-blue">{plan.name}</h2>
             <h4 className="text-cool-gray text-[16px]">
               {`${isSelected ? plan.price.yearly : plan.price.monthly}`}
             </h4>
-            {isSelected && <h3 className="text-marine-blue font-semibold">{`${plan.freeMonths} months free`}</h3>}
+            {isSelected && <h3 className="font-semibold text-marine-blue">{`${plan.freeMonths} months free`}</h3>}
           </div>
         </span>
       ))}
 
-      <footer className="flex justify-center text-center mt-7 bg-custom-bg p-5 rounded-md"> 
+      <footer className="flex justify-center p-5 text-center rounded-md mt-7 bg-custom-bg"> 
         <h2 className="font-bold text-marine-blue text-[18px]">Monthly</h2>
         <div
           onClick={() => handleSwitch()}

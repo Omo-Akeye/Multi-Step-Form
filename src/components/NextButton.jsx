@@ -1,4 +1,5 @@
-import { useFormContext } from '../App';
+import { useFormContext } from "../context/useFormContext";
+
 
  
  export default function NextButton() {
@@ -6,7 +7,7 @@ import { useFormContext } from '../App';
     return (
     <>
      <div className="">
-     <button className="bg-marine-blue text-white p-3 font-bold" 
+     <button className="p-3 font-bold text-white bg-marine-blue" 
      onClick={() => {handleNextStep(); }}>{state.step=== 4 ? 'Confirm':'Next Step'}</button>
    </div>
    </>

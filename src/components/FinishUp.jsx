@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { useFormContext } from '../App';
+import { useFormContext } from '../context/useFormContext';
+
 
 
 function FinishUp() {
@@ -21,15 +22,15 @@ function FinishUp() {
   }
   return (
     <div>
-       <h1 className="text-4xl font-bold text-marine-blue mb-3">Finishing up</h1>
-        <h3 className="text-cool-gray text-lg">Double-check everything looks OK before confirming</h3>
-     <div className='bg-custom-bg p-5 rounded-md mt-3'>
+       <h1 className="mb-3 text-4xl font-bold text-marine-blue">Finishing up</h1>
+        <h3 className="text-lg text-cool-gray">Double-check everything looks OK before confirming</h3>
+     <div className='p-5 mt-3 rounded-md bg-custom-bg'>
         <div className='flex justify-between'>
           <span>
-          <p className='text-marine-blue font-black text-base'>{selectedPlan.name}  ({isSelected ? 'Yearly' : 'Monthly'})</p>
-          <a href="#" onClick={()=> handleChangeUp()} className='text-cool-gray text-base  decoration-solid '>Change</a>
+          <p className='text-base font-black text-marine-blue'>{selectedPlan.name}  ({isSelected ? 'Yearly' : 'Monthly'})</p>
+          <a href="#" onClick={()=> handleChangeUp()} className='text-base text-cool-gray decoration-solid '>Change</a>
           </span>
-          <p className='text-marine-blue text-base font-black'>{isSelected ? selectedPlan.price.yearly : selectedPlan.price.monthly}</p>
+          <p className='text-base font-black text-marine-blue'>{isSelected ? selectedPlan.price.yearly : selectedPlan.price.monthly}</p>
         </div>
         <hr className='mt-3' />
       <ul>
@@ -38,13 +39,13 @@ function FinishUp() {
           return (
             <li key={selectedAddOn.id} className='flex justify-between pt-3'>
               <strong>{selectedAddOn.name}</strong> 
-               <span className='text-cool-gray font-bold'>{selectedAddOn.price} {isSelected ? selectedAddOn.YearlyPrice : selectedAddOn.MonthlyPrice}</span>
+               <span className='font-bold text-cool-gray'>{selectedAddOn.price} {isSelected ? selectedAddOn.YearlyPrice : selectedAddOn.MonthlyPrice}</span>
             </li>
           );
         })}
       </ul>
      </div>
-      <p className='text-cool-gray font-bold p-5 flex justify-between text-lg'>Total per ({isSelected ? 'Year' : 'Month'}) 
+      <p className='flex justify-between p-5 text-lg font-bold text-cool-gray'>Total per ({isSelected ? 'Year' : 'Month'}) 
       <span className='text-purple-blue'>+${calculateTotalPrice().toFixed(2)}/{isSelected ? 'Year' : 'Month'}</span></p>
 
     
