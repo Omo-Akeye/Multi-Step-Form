@@ -1,15 +1,14 @@
+import React from 'react'
+import NextButton from './NextButton'
 import { useFormContext } from '../App';
 
- 
- export default function Button() {
-  const {state,handleNextStep } = useFormContext();
-    return (
-    <>
-     <div className="">
-     <button className="bg-marine-blue text-white p-3 font-bold" 
-     onClick={() => {handleNextStep(); }}>{state.step=== 4 ? 'Confirm':'Next Step'}</button>
+export default function Button() {
+  const {state,handlePrev } = useFormContext();
+  return (
+    <div className="flex justify-between mt-4" >
+   { <button className={`text-xl text-cool-gray font-bold ${state.step === 1 ? 'invisible' : '' }`} 
+        onClick={()=> handlePrev()}>Go Back</button>}
+     <NextButton />
    </div>
-   </>
-   )
-    }
-  
+  )
+}
