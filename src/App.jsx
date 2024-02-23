@@ -33,34 +33,40 @@ function App() {
     <>
      <FormContext.Provider value={{ state, dispatch, plans, addOns, 
       handleNextStep,handlePrev,handleSubmit,selectedPlan}}>
+<section className="lg:grid lg:place-items-center lg:h-screen max-lg:mt-5">
 
-    <div className="font-custom bg-white md:grid md:grid-cols-[1.2fr,3fr] lg:w-[80%] md:m-auto md:p-3 md:mt-10">
-   <div>
-     <Header />
-   </div>
-    
-    <section>
-    <div className="pb-10 ">
-        <div className="w-[90%] m-[auto] bg-white py-8 px-5 mt-[-60px] rounded-lg drop-shadow-lg md:mt-[auto]">
-  {state.step ===1 && 
-   ( <LogIn  />)}
 
-    {state.step === 2 && (
-     <MonthlyPlan />
-)}
-    {state.step === 3 && (
-     <AddsOn />
-)}  {state.step === 4 && (<FinishUp />)}
-    {state.step === 5 && (<Thankyou/>)}
 
-    {step !== 5 &&  <Button/> }
-      </div>                   
-   </div>
-
+<div className="font-custom bg-white md:grid md:grid-cols-[1.2fr,3fr] lg:w-[80%] md:m-auto md:p-3 ">
   
-    </section>
+  <div>
+    <Header />
+  </div>
+   
+   <section>
+   <div className="pb-10 ">
+       <div className="w-[90%] m-[auto] bg-white py-8 px-5 mt-[-60px] rounded-lg drop-shadow-lg md:mt-[auto]">
+ {state.step ===1 && 
+  ( <LogIn  />)}
 
-    </div>
+   {state.step === 2 && (
+    <MonthlyPlan />
+)}
+   {state.step === 3 && (
+    <AddsOn />
+)}  {state.step === 4 && (<FinishUp />)}
+   {state.step === 5 && (<Thankyou/>)}
+
+   {step !== 5 &&  <Button/> }
+     </div>                   
+  </div>
+
+ 
+   </section>
+
+   </div>
+
+</section>
     </FormContext.Provider>
     </>
   )
